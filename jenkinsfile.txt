@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+            stages {
+                    stage('One') {
+                            steps {
+                                    echo 'This is our first Jenkins pipeline'
+                            }
+                    }
+                
+                    stage('Two') {
+                            steps {
+                                    input('Deploy on Dev/Box?')
+                            }
+                    }
+                    stage('Three') {
+                        when {
+                            not {
+                                  echo "BYE"
+                            }
+                        }
+                        steps {
+                                steps {
+                                    input('Deploy on QA/Box?')
+                            }
+                        }
+                    }
+					stage('Four') {
+                        when {
+                            not {
+                                  echo "BYE"
+                            }
+                        }
+                        steps {
+                                steps {
+                                    input('Deploy on Staging/Box?')
+                            }
+                        }
+                    
+					stage('Five') {
+                        when {
+                            not {
+                                  echo "BYE"
+                            }
+                        }
+                        steps {
+                                steps {
+                                    input('DONE?')
+                            }
+                        }
+                    }
+                 }
+            }
