@@ -9,43 +9,37 @@ pipeline {
                 
                     stage('Two') {
                             steps {
-                                    input('Deploy on Dev/Box?')
+                                    input('DEV?')
                             }
                     }
                     stage('Three') {
                         when {
                             not {
-                                  echo "BYE"
+                                  branch "master"
                             }
                         }
                         steps {
-                                steps {
-                                    input('Deploy on QA/Box?')
-                            }
+                                input('QA?')
                         }
                     }
-					stage('Four') {
+					  stage('Four') {
                         when {
                             not {
-                                  echo "BYE"
+                                  branch "master"
                             }
                         }
                         steps {
-                                steps {
-                                    input('Deploy on Staging/Box?')
-                            }
+                                input('Prod?')
                         }
-                    
-					stage('Five') {
+                    }
+					 stage('Five') {
                         when {
                             not {
-                                  echo "BYE"
+                                  branch "master"
                             }
                         }
                         steps {
-                                steps {
-                                    input('DONE?')
-                            }
+                                echo "Done"
                         }
                     }
                  }
